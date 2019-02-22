@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cp -r ./src/*/*.java .
+
+for i in *.java; do
+	sed -i -e "s/\(package.*;\)/\/\/ \1/g" $i
+	sed -i -e "s/\(import expressionParser.*;\)/\/\/ \1/g" $i
+	sed -i -e "s/\(import operations.*;\)/\/\/ \1/g" $i
+	sed -i -e "s/\(import feedWorker.*;\)/\/\/ \1/g" $i
+done
+
+exit 0

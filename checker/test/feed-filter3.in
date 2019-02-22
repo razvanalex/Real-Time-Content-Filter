@@ -1,0 +1,22 @@
+begin
+create_obs 10 nil
+create_obs 11 ( eq name GOLD )
+create_obs 12 ( ( le value 4.8 ) || ( ge value 4.9 ) ) && ( eq name GOLD ) 
+feed GOLD 4.6
+feed GOLD 4.8
+print 11
+feed GOLD 4.7
+print 11
+feed GOLD 4.75
+delete_obs 11
+create_obs 11 ( eq name GOLD )
+feed GOLD 4.9
+feed EUR 5.8
+feed OIL 3.7
+print 10
+print 11
+feed EUR 5.7
+feed OIL 4.0
+feed GOLD 4.85
+print 12
+end

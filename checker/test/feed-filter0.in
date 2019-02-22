@@ -1,0 +1,11 @@
+begin
+create_obs 10 nil
+feed Nikkei225 9
+feed Nikkei225 11
+print 10
+feed Nikkei225 8
+print 10
+feed Nikkei225 10
+feed Nikkei225 11
+print 10
+end

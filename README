@@ -1,0 +1,173 @@
+-------------------------------------------------------------------------------
+                             Tema 2 - POO
+-------------------------------------------------------------------------------
+
+Autor: Smadu Razvan-Alexandru  325CB
+
+Fisiere incluse:
+  > Proiectul (facut in eclipse):
+    - ./src/expressionParser/*.java
+    - ./src/feedWorker/*.java
+    - ./src/operations/*.java
+    - ./.classpath
+    - ./.project
+  > Fisiere pentru compilare/rulare:
+    - ./build
+    - ./Makefile
+  > Documentatia:
+    - ./doc/*
+    - ./README
+
+README
+  Crearea arborelui de expresie
+    Clasa Parser este specializata in parsarea expresiei si aplicarea 
+    algoritmului Shunting-Yard pentru generarea unei cozi de operatori si 
+    operanzi in care nu este necesara utilizarea parantezelor (in notatie 
+    postfix). Intrucat nu necesita mai mult de o instanta pentru aceasta clasa,
+    a fost aplicat un singleton design pattern. 
+
+    Functia createQueue(String) creeaza o coada ce contine fiecare element (
+    operand, operator sau paranteza) in exact aceeasi ordine ca in string. 
+    Aceste elemente sunt pastrate ca si noduri, pentru a usura generarea 
+    arborelui. Aceasta metoda implementeaza un factory design pattern: pentru
+    fiecare tocken parsat se creeaza un nod specific acestuia (de exemplu: 
+    la aparitia caracterului '(' se creeaza un nod generic de tip paranteza 
+    stanga). Pentru extragerea operanzilor (care reprezinta practic grupuri de 
+    3 cuvine) este folosita metoda getWords(String, int, char) care constuieste
+    un string ce contine urmatoarele 3 cuvinte pana la aparitia caracterului 
+    ')'. Apoi, din acest string se creeaza un nod corespunzator tipului de 
+    operatie pe care il reprezinta, printr-un factory (de exemplu: pentru un 
+    string "eq name GOLD" o sa se genereze un nod de tip EqOperator ce o sa 
+    aiba setat numele de referinta cu "GOLD"). Pentru a folosi metoda 
+    getExprNode pentru operator din clasa ExprNodeFactory trebuie mai intai 
+    setat string-ul si apoi apelata metoda.
+
+    Functia createShuntingYardQueue(Queue) creeaza dintr-o coada in notatie
+    postfix, o coada in notatie infix, aplicand algoritmul Shunting-Yard [1]. 
+    Algoritmul foloseste o stiva in care se punt operanzi si operatori si o 
+    coada din care se extrag acestea. In cazul in care se da de un operand 
+    acesta se pune in coada; daca se da de un operator, in functie de precedenta
+    si existenta unei paranteze stanga se pun in coada elementele din stiva 
+    si se pune pe stiva operatorul, in cazul parantezei stanga se pune pe stiva,
+    iar in cazul parantezei dreapta se extrag elementele de pe stiva pana cand
+    se da de paranteza complementara. La final se pun restul elementelor din
+    stiva, in coada.
+
+    [1] https://en.wikipedia.org/wiki/Shunting-yard_algorithm#The_algorithm_in_detail
+
+    Metoda createGraphUsingQueue(Queue) creeaza un arbore, plecand de la o 
+    coada de elemente in notatie postfix. Algoritmul consta in extragerea 
+    elementelor din coada si punerea lor intr-o stiva; iar cand se da de un
+    operator, se extrag ultimele 2 valori de pe stiva si se pun la fii nodului
+    curent. In final, pe stiva o sa ramana un singur element care reprezinta 
+    radacina arborelui de expresie, a carui referinta va fi returnata.
+
+    Metoda createExprGraph(String) aplica toate cele 3 metode descrise mai sus
+    asupra string-ului dat ca parametru, respectiv rezultatelor acestor metode.
+    In cazul in care apare o eroare in timpul crearii arborelui, se afiseaza 
+    pe ecran mesaju "Error while parsing..." si se returneaza null.
+
+  Detalii despre continutul arborelui de expresie
+    Arborele de expresie este format din noduri de tipul: 
+      - AndNode, OrNode - pentru noduri operatie (&& respectiv ||)
+      - OperandNode     - pentru noduri operanzi. Acestea, la randul lor sunt:
+          > EqOperator - pentru egalitatea intre valori sau string-uri
+          > NeOperator - pentru nonegalitatea intre valori sau string-uri
+          > GeOperator - pentru relatia "strict mai mare sau egal" intre valori
+          > GtOperator - pentru relatia "strict mai mare" intre valori
+          > LeOperator - pentru relatia "mai mic sau egal" intre valori
+          > LtOperator - pentru relatia "stric mai mic" intre valori
+    
+    Fiecare dintre nodurile prezentate mai sus evalueaza, boolean, expresia si
+    transmite mai departe valoarea in visitor pattern, prin urmare:
+      - AndNode     - face AND intre fii sai
+      - OrNode      - face OR intre fii sai
+      - OperandNode - verifica daca valoarea sau numele indeplinesc conditia
+                      (eq, ne, le, lt, ge, gt) cu o valoare de referinta.
+
+    De asemenea pentru coada de noduri, rezultata in prima faza a parsarii, 
+    exista si GenericNode pentru retinerea parantezelor. Acestea retin doar 
+    caracterul si nu sunt folosite mai departe in evaluare, ci doar in 
+    construirea cozii in noatie postfix.
+
+  Implementarea visitor pattern-ului
+    Avand arborele de expresie creat, acesta trebuie evaluat pentru valorile sau
+    numele stock-urilor. Clasa ExpressionVisitor implementeaza metodele visit()
+    prin care se parcurge arborele si se evalueaza acesta. Pentru a creste 
+    viteza de rulare a programului, pentru arbori mari de expresie, fiecare 
+    nod mentine un cost (inaltimea subarborelui asociat nodului), prin care 
+    se evalueaza ramura mai scurta prima data, iar apoi daca este posibil, se 
+    scurt-circuiteaza rezultatul (0 && x = 0; 1 || x = 1). La apelul metodei
+    accept() al expresiei, se "viziteaza" o parte dintre noduri, in cel mai rau 
+    caz toate, si se returneaza rezultatul final. Pentru evaluare, deoarece
+    valorile care trebuie testate sunt comune la toate nodurile de tip 
+    OperandNode (adica frunzele arborelui) exista variabilele statice value si
+    name. Prin urmare, pentru evaluarea arborelui, se seteaza mai intai aceste
+    2 campuri (folosind getter-ii asociati) si apoi se apeleaza accept() pentru
+    evaluare.
+
+  Implementarea feed-ului si a observatorilor
+    Clasa Feed represinta subiectul observatorilor. Aceasta contine un vector
+    de oservatori si de asemenea un vector de stock-uri. Stock-urile reprezinta
+    perechi de tipul (String, Float) adica (nume, valoare) si sunt retinute 
+    intr-un TreeMap. In acest feed se pot adauga/modifica stock-uri, atasare /
+    detasarea observatorilor, noftificarea privind o singura modificare sau 
+    privind mai multe modificari (sync) si printarea observatorului dupa un ID.
+
+    Clasas FilterFeedObserver contine practic implementarile metodelor 
+    FeedObserver. Aceasta contine, pe langa subiectul Feed si ID-ul, un TreeMap
+    pentru informatiile necesare printarii si metode pentru printare si update.
+
+    La crearea unui observator, se initializeaza informatiile necesare printarii
+    cu numele respectiv valoarea fiecarui stock, restul datelor fiind cele 
+    default. Cand se face un update, se apeleaza metoda update(String, Float)
+    pentru o singura modificare (aceasta fiind singura posibilitate in aceasta
+    tema, insa am lasat si posibilitatea sincronizarii datelor, dar care 
+    este ineficienta in cazul de fata pentru multe date de intrare). In cazul in
+    care nu exista stock-ul in TreeMap, se creeaza o noua inregistrare, iar 
+    in cazul in care exista, se actualizeaza valoarea.
+
+    Metoda printFeed() afiseaza datele din stock (toate informatiile necesare
+    care sunt puse tot intr-un TreeMap pentru a mentine datele sortate in ordine
+    alfabetica dupa numele stock-ului). Pentru afisare, mai intai se evalueaza 
+    filtrul pentru fiecare stock, iar in cazul in care se respecta filtru, se 
+    mai fac niste calcule pentru determinarea fluctuatiei si setarea ultimei 
+    valori printate. Pe urma se afiseaza datele sub formatul cerut, iar apoi se 
+    reseteaza numarul de schimbari la 0.  
+
+    Nota: In cazul in care filtrul a fost setat la 'nil', arborele de expresie 
+          este practic null.
+
+  Implementarea comenzilor
+    Clasa CommandInterpreter realizeaza citirea datelor de la standard input si
+    interpreteaza aceste date. De asemenea, deoarece nu este necesar sa se 
+    creeze foarte multe instante de tip CommandInterpreter, acesta implementeaza
+    singleton design pattern. Pentru a putea folosita aceasta instanta, trebuie
+    initializat feed-ul (apeland metoda initFeed()) si deschis stream-ul (prin
+    apelul metodei start() care verifica daca prima comanda citita este 
+    "begin"). In cazul in care prima comanda nu este "begin", se inchide 
+    stream-ul. Inchiderea stream-ului se realizeaza prin apelul metodei stop().
+    Deasemenea, exista si o functie numita checkStream() care verifica daca 
+    stream-ul este deschis sau nu.
+
+    Metoda interpretNextCmd() citeste urmatoarea comanda de la standard input 
+    si verifica tipul acestei comenzi si executa operatiile specifice comenzilor
+    respective. In cazul in care comanda nu exista, se afiseaza mesajul "Invalid 
+    Command!". Comenzi:
+      - create_obs - creeaza un nou observator cu id-ul dat ca argument si il
+                     ataseaza feed-ului
+      - delete_obs - detaseaza observatorul cu id-ul dat ca argument de la feed
+      - print      - apeleaza metoda printObserver care afiseaza observatorul
+                     cu id-ul dat ca argument
+      - feed       - adauga/modifica un feed
+      - end        - inchide stream-ul
+
+  Observatii:
+    - Toate clasele care implementeaza un factory design pattern sunt si 
+    singleton
+    - Pe checker-ul local au fost obtinute 90/90 puncte. Timpul de execute pe 
+    un i3: ~8 sec; pe masina virtuala 512MB, 1 CPU: ~20 sec (ambele ruland 
+    Ubuntu).
+    - Scriptul ./build copiaza toate fisierele .java din proiect in folder-ul 
+    curent si sterge toate import-uirle si package-urile create de mine. 
+    Ulterior, Makefile-ul compileaza fisierele.

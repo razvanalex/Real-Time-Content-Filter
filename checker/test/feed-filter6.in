@@ -1,0 +1,15 @@
+begin
+create_obs 1 ((((eq name A) && (ge value 10)) || ((eq name B) && (ge value 5)) || ((eq name C) || (eq name D))) && ((le value 20) || (ge value 50)) && (lt value 100))
+create_obs 2 nil
+feed C 10
+feed C 9
+feed D 21
+feed A 120
+print 2
+print 1
+feed C 11
+delete_obs 1
+create_obs 1 (((eq name A) || (eq name C) || (eq name D)) && ((lt value 15) || (eq value 20)))
+feed B 20
+print 1
+end

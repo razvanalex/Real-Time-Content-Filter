@@ -1,0 +1,49 @@
+begin
+feed BTC 1000
+create_obs 1 ((ne name EUR) && (gt value 100))
+create_obs 2 (((eq name BTC) && ((lt value 1000) || (gt value 3000))) || ((eq name BCH) && ((lt value 400) || (ge value 1000))) || (eq name ETH) || (gt value 5000))
+print 1
+feed EUR 1.5
+feed BTC 2000
+print 2
+feed BTC 2500
+feed ETH 50
+print 1
+feed EUR 1.4
+print 2
+feed BTC 3000
+feed BCH 200
+feed ETH 150
+feed BTC 3500
+feed BCH 300
+print 2
+feed BCH 500
+feed BCH 350
+print 1
+feed BTC 4200
+feed ETH 220
+feed BCH 450
+print 2
+feed BTC 3900
+feed BCH 320
+feed BTC 3400
+feed BTC 3200
+print 2
+feed BCH 290
+feed BTC 2900
+print 1
+feed ETH 200
+feed BTC 3800
+feed BCH 330
+feed BTC 4300
+feed ETH 310
+feed BTC 5000
+print 2
+feed BTC 6900
+feed BCH 500
+feed BTC 8200
+feed ETH 390
+feed BCH 712
+feed BTC 9100
+print 1
+end

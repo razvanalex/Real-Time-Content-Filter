@@ -1,0 +1,132 @@
+begin
+feed EYDYL 9.244881705823714
+feed NUWCZ 10.183234704729415
+feed YKJYP 9.345350184869556
+feed PFLLC 7.326341907648
+feed TQWCF 12.958825382984678
+feed IFFVO 8.66604121193495
+feed ELUYT 10.526580790122113
+feed FPIQA 8.797905687331603
+feed KEQKN 8.70234554244198
+feed OQUTE 7.408609951102713
+feed FMMHD 10.694664892198304
+feed NCNSI 10.089985202807812
+feed NTWAN 9.800642693794732
+feed YBHQU 12.559524466537741
+feed KYAQR 8.001971049095985
+feed KWEIP 11.41897741638943
+feed GQWAC 10.105862478351822
+feed BPZUH 7.515437569952356
+feed QHODZ 13.719972810075822
+feed WOXTI 13.501513835524332
+create_obs 0 (((eq name EYDYL) && (gt value 12.4409118934458)) || ((eq name BPZUH) && (lt value 10.783578149849523)) || ((eq name WOXTI) && (lt value 13.2556652653562)) || ((eq name FMMHD) && (gt value 6.295512273461165)) || ((eq name FMMHD) && (ge value 7.377222216343295)) || ((eq name IFFVO) && (lt value 8.864171745005834)) || ((eq name NUWCZ) && (le value 6.591638402136084)))
+create_obs 1 (((eq name NUWCZ) && (le value 10.816545101854324)) || ((eq name KWEIP) && (le value 11.711777423870494)) || ((eq name ELUYT) && (gt value 13.803510125038962)))
+create_obs 2 (((eq name KWEIP) && (ge value 9.950969404596513)) || ((eq name OQUTE) && (gt value 9.339632154752437)) || ((eq name WOXTI) && (lt value 8.18814067587153)) || ((eq name NTWAN) && (lt value 13.279780196775594)) || ((eq name IFFVO) && (gt value 6.392503376278203)) || ((eq name FPIQA) && (ge value 12.314087808950603)) || ((eq name KEQKN) && (gt value 12.131504193291232)) || ((eq name NTWAN) && (le value 8.581761504174672)) || ((eq name NTWAN) && (gt value 10.048678846704881)) || ((eq name NUWCZ) && (le value 7.077259986169377)) || ((eq name EYDYL) && (le value 8.298758891641715)) || ((eq name NTWAN) && (le value 6.92868391770034)) || ((eq name NCNSI) && (lt value 11.74917787202735)) || ((eq name NCNSI) && (le value 12.414871774673347)) || ((eq name NUWCZ) && (ge value 9.98669324001039)) || ((eq name YKJYP) && (ge value 10.185079454851435)))
+create_obs 3 (((eq name WOXTI) && (le value 11.028423518340759)) || ((eq name GQWAC) && (le value 8.42785359785759)) || ((eq name KEQKN) && (gt value 11.427678861937121)))
+create_obs 4 (((eq name KEQKN) && (le value 10.091728542544033)) || ((eq name YKJYP) && (ge value 9.372887272591832)) || ((eq name YKJYP) && (ge value 13.23049729659514)) || ((eq name OQUTE) && (gt value 13.867202815347923)) || ((eq name NCNSI) && (le value 13.498177659531294)) || ((eq name NUWCZ) && (ge value 9.94079802797446)) || ((eq name NUWCZ) && (gt value 6.4842307525963925)) || ((eq name KEQKN) && (gt value 8.458372702723636)) || ((eq name QHODZ) && (lt value 10.36813414586753)) || ((eq name WOXTI) && (gt value 6.903391070798648)) || ((eq name NUWCZ) && (le value 9.2604803845927)) || ((eq name OQUTE) && (ge value 12.784883077681684)))
+create_obs 5 (((eq name QHODZ) && (lt value 6.134413515322118)) || ((eq name ELUYT) && (gt value 9.123682145670507)) || ((eq name WOXTI) && (le value 8.130106773696482)) || ((eq name NUWCZ) && (lt value 7.841787881008269)) || ((eq name GQWAC) && (gt value 11.094159757669644)) || ((eq name WOXTI) && (le value 12.942802301935576)) || ((eq name GQWAC) && (gt value 7.03910304321194)) || ((eq name NCNSI) && (ge value 9.496698515650834)) || ((eq name PFLLC) && (ge value 6.129339674921148)) || ((eq name QHODZ) && (ge value 7.856360804348913)) || ((eq name FPIQA) && (ge value 6.173986607114724)) || ((eq name NUWCZ) && (le value 9.109941395507793)) || ((eq name WOXTI) && (le value 9.65606543795419)) || ((eq name BPZUH) && (lt value 11.688854709430728)) || ((eq name BPZUH) && (lt value 13.671998896430058)) || ((eq name YBHQU) && (gt value 13.69154100554681)) || ((eq name IFFVO) && (le value 11.946864517039518)) || ((eq name FMMHD) && (ge value 12.552954692363159)) || ((eq name KYAQR) && (ge value 6.24223793657886)) || ((eq name QHODZ) && (lt value 10.54672799625428)))
+create_obs 6 (((eq name GQWAC) && (ge value 11.56638059950778)) || ((eq name QHODZ) && (lt value 6.888680319843262)) || ((eq name FMMHD) && (lt value 9.390466419503639)))
+create_obs 7 (((eq name QHODZ) && (gt value 10.836686590519236)) || ((eq name OQUTE) && (le value 8.690997501302999)) || ((eq name NTWAN) && (lt value 11.796481672223125)) || ((eq name GQWAC) && (le value 13.672727078209682)) || ((eq name TQWCF) && (gt value 10.700578941932168)) || ((eq name EYDYL) && (le value 9.462376020738322)) || ((eq name KWEIP) && (ge value 11.618775992784428)) || ((eq name YKJYP) && (ge value 10.349906304275958)) || ((eq name YBHQU) && (ge value 7.262254822395457)) || ((eq name WOXTI) && (le value 7.001250736052642)) || ((eq name YKJYP) && (le value 11.385718386692364)) || ((eq name EYDYL) && (le value 7.412765909674732)) || ((eq name NTWAN) && (le value 12.784765237016472)))
+create_obs 8 (((eq name GQWAC) && (le value 6.85563637799808)) || ((eq name BPZUH) && (lt value 6.281838616393703)) || ((eq name EYDYL) && (le value 11.912453959569795)) || ((eq name FPIQA) && (lt value 7.0090798112007064)) || ((eq name YKJYP) && (lt value 11.468357914095979)) || ((eq name FPIQA) && (ge value 9.610490769876616)) || ((eq name NCNSI) && (ge value 10.120671525409913)) || ((eq name KYAQR) && (ge value 11.95672230833291)) || ((eq name GQWAC) && (lt value 6.563884766471384)) || ((eq name WOXTI) && (lt value 8.296404027755173)) || ((eq name WOXTI) && (le value 6.108710394526653)) || ((eq name PFLLC) && (gt value 6.551358528398763)) || ((eq name KYAQR) && (lt value 8.709593572075342)) || ((eq name FMMHD) && (lt value 13.200735646299645)) || ((eq name YKJYP) && (ge value 12.254797208815663)) || ((eq name OQUTE) && (le value 9.05028260310043)) || ((eq name BPZUH) && (le value 10.891930519306413)) || ((eq name BPZUH) && (lt value 13.165075409413017)))
+create_obs 9 (((eq name TQWCF) && (le value 12.45321374836459)) || ((eq name FPIQA) && (gt value 8.168581304732694)) || ((eq name OQUTE) && (ge value 6.525042995345689)) || ((eq name YBHQU) && (ge value 10.711042915661501)) || ((eq name GQWAC) && (le value 7.9481399315811565)) || ((eq name NCNSI) && (le value 12.501183899223197)))
+feed QHODZ 12.401970502246275
+print 1
+feed KYAQR 11.877781247938682
+feed YKJYP 10.17594857183151
+feed NUWCZ 8.011155207434788
+feed NTWAN 8.749133543962369
+feed DPCFM 11.116713545054326
+feed XYLUN 7.897575385368505
+feed KEQKN 7.290076058056401
+feed SBLOI 11.807284805122565
+delete_obs 4
+feed OIHIU 8.938900130829907
+feed BQLIN 12.375943717094906
+create_obs 10 (((eq name YKJYP) && (lt value 10.484847916670354)) || ((eq name OIHIU) && (le value 13.880231509580263)) || ((eq name NTWAN) && (gt value 9.731704361953808)) || ((eq name KEQKN) && (le value 6.223267271877251)) || ((eq name FPIQA) && (gt value 10.851210949590676)) || ((eq name NCNSI) && (lt value 12.784431364423348)) || ((eq name NCNSI) && (le value 12.383045187333451)) || ((eq name BQLIN) && (ge value 6.640162237001213)))
+delete_obs 0
+feed EYDYL 6.481553544721798
+feed XYLUN 9.246134172353663
+feed SBLOI 7.524492116202515
+feed NUWCZ 10.015082252396006
+feed HMUEU 6.524105399700618
+feed CWUKQ 12.312457720370404
+print 1
+feed NCNSI 12.357827130017402
+feed MMGDA 9.743245875114875
+feed ZUAUO 13.4095352045641
+feed KEQKN 13.873173800733099
+feed XYLUN 9.300842731794974
+feed YBHQU 11.157857146952775
+feed KCEWC 8.774514479946552
+feed NCNSI 10.37722499620128
+feed KEQKN 10.802563177561433
+feed HHTJM 4.220723580549413
+print 9
+feed OQUTE 15.028607989841841
+print 1
+feed XBQYK 10.15505417399161
+feed BPZUH 9.404224445822827
+feed SBLOI 13.74567022325737
+feed EYDYL 10.513639271782633
+feed KWEIP 8.679944086420619
+print 3
+feed GQWAC 8.22898386589639
+feed IFFVO 9.107542882199553
+print 6
+feed EYDYL 14.605432271687159
+feed TQWCF 8.616312828593152
+feed CZJNY 10.406894007215845
+feed KCEWC 10.493711935932161
+feed ELUYT 8.82842676157906
+feed NCNSI 7.643264585735309
+delete_obs 7
+feed NTWAN 10.596520014328117
+feed YKJYP 11.792637393705805
+feed BPZUH 8.402806680191242
+feed KCEWC 11.316652788737459
+feed CZJNY 10.799868284924273
+feed FMMHD 7.559802516230138
+feed ELUYT 8.823263791372502
+delete_obs 8
+feed EYDYL 6.637688334642058
+feed ELUYT 11.366518702026372
+feed CWUKQ 5.762026213830576
+feed HHTJM 10.559961727012375
+feed KWEIP 11.93762662654921
+print 5
+feed EYDYL 8.193602806731285
+feed ROHZV 9.624189473664602
+feed YKJYP 6.733657499668805
+feed HHTJM 9.341657094107575
+print 3
+feed WOXTI 6.917744010663346
+create_obs 11 (((eq name YBHQU) && (gt value 7.947589783735811)) || ((eq name ROHZV) && (lt value 6.175010147376202)) || ((eq name DPCFM) && (gt value 9.743008266379718)) || ((eq name BPZUH) && (lt value 6.268092608275984)))
+feed RWLQZ 9.675947219468988
+feed CWUKQ 11.112547382842036
+feed BDXQB 8.714456275860355
+feed KYAQR 6.535798263552343
+feed SBLOI 11.72031342196807
+feed ELUYT 11.17670233278773
+feed HMLSW 10.75429414902315
+feed PFLLC 10.69861668367869
+feed XYLUN 12.125772108860591
+feed BYPSH 12.701585650637963
+feed SRIRG 11.932413063036138
+feed ROHZV 11.716184486202199
+feed XBQYK 10.742342923840448
+feed CWUKQ 9.842163669149569
+print 1
+feed KYAQR 8.664418705227828
+delete_obs 11
+feed GQWAC 12.398135940864972
+feed QHODZ 9.728204021248642
+feed HMUEU 6.379629805513128
+feed KYAQR 9.418463005290754
+feed KCEWC 9.236817013545457
+print 1
+feed BPZUH 12.6825794212405
+feed WOXTI 9.119544652544466
+feed SRIRG 10.322050137068677
+feed EVCAD 8.360080018905776
+feed KYAQR 10.533555432639886
+end

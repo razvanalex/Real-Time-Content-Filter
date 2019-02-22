@@ -1,0 +1,15 @@
+begin
+feed AustraliaASXAllOrdinaries 12
+create_obs 10 (ne name MumbaiSensex)
+feed AustraliaASXAllOrdinaries 9.4
+feed AustraliaASXAllOrdinaries 11.25
+print 10
+feed AustraliaASXAllOrdinaries -8.8
+print 10
+delete_obs 10
+feed AustraliaASXAllOrdinaries 0.1
+feed AustraliaASXAllOrdinaries 0.1
+create_obs 10 (ne value 0.1)
+feed AustraliaASXAllOrdinaries 11
+print 10
+end

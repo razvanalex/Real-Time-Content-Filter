@@ -1,0 +1,14 @@
+begin
+feed HangSeng 12
+create_obs 10 (lt value 10)
+feed HangSeng 9
+feed HangSeng 11
+print 10
+feed HangSeng 8
+print 10
+delete_obs 10
+feed HangSeng 10
+create_obs 10 (ne name HangSeng)
+feed HangSeng 11
+print 10
+end

@@ -1,0 +1,12 @@
+begin
+feed A 12
+create_obs 10 (ge value 10)
+feed A 9
+feed A 11
+print 10
+feed A 8
+print 10
+delete_obs 10
+feed A 10
+create_obs 10 (ge value 10)
+end

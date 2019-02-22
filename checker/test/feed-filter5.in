@@ -1,0 +1,20 @@
+begin
+create_obs 1 (((eq name A) || (gt value 10)) && (lt value 20))
+feed A 9
+feed B 9
+feed C 15
+print 1
+print 1
+feed A 20
+feed B 12
+feed B 10
+feed B 11
+print 1
+create_obs 2 ((eq name C) || ((eq name B) && (le value 20)) || ((eq name A) && (lt value 10)))
+print 2
+feed A 9
+print 1
+feed B 30
+print 2
+print 1
+end
